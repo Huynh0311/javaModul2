@@ -13,10 +13,13 @@ public class snt {
             check = false;
 
         } else {
-            for(int i = 2; i < num; i++){
+            int i = 2;
+            while (i < num){
                 if(num % i == 0){
                     check = false;
+                    break;
                 }
+                i++;
             }
         }
         if(check){
