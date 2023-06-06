@@ -5,16 +5,28 @@ import java.util.Scanner;
 public class tinh_nam_nhuan {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập năm bạn muốn kiểm tra!");
-        int nam = scanner.nextInt();
+        int nam;
+        System.out.println("Enter a year: ");
+        nam = scanner.nextInt();
+        boolean namNhuan = false;
 
-        if (nam % 4 == 0 && nam % 100 != 0) {
-            System.out.println("Năm " + nam + " là năm nhuận");
-        } else if (nam % 100 == 0 && nam % 400 != 0) {
-            System.out.println("Năm " + nam + " là năm không nhuận");
-        } else if (nam % 100 == 0 && nam % 400 == 0) {
-            System.out.println("Năm " + nam + " là năm nhuận");
+        boolean isDivisibleBy4 = nam % 4 == 0;
+        if(isDivisibleBy4){
+            boolean isDivisibleBy100 = nam % 100 == 0;
+            if(isDivisibleBy100){
+                boolean isDivisibleBy400 = nam % 400 == 0;
+                if(isDivisibleBy400){
+                    namNhuan = true;
+                }
+            } else {
+                namNhuan = true;
+            }
+        }
+
+        if(namNhuan){
+            System.out.printf("%d là năm nhuận", nam);
+        } else {
+            System.out.printf("%d không là năm nhuận", nam);
         }
     }
-
 }
