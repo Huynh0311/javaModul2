@@ -26,11 +26,13 @@ public class Max_array {
         System.out.println("Mang vua nhap la: " + Arrays.toString(array));
 
         int max = 0;
+        int index = 1;
         for (int j = 0; j < array.length; j++) {
             if(array[j] > max){
                 max = array[j];
+                index = j + 1;
             }
         }
-        System.out.println("Max trong mang vua nhap la: " + max);
+        System.out.println("Max trong mang vua nhap la: " + max + " ở vị trí thứ: "+index);
     }
 }
