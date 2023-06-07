@@ -21,7 +21,7 @@ public class count_students_pass {
                 arr_score[i] = input.nextInt();
             }
             for (int i = 0; i < students; i++){
-                if(arr_score[i] > 5){
+                if(arr_score[i] >= 5 && arr_score[i] <= 10){
                     count++;
                 }
             }
