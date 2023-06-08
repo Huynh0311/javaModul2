@@ -12,34 +12,44 @@ public class QuadraticEquation {
         this.b = b;
         this.c = c;
     }
-    public double getDiscriminant(){
+
+    public double getDiscriminant() {
         return Math.pow(this.b, 2) - 4 * this.a * this.c;
     }
-    public double getRoot1(){
+
+    public double getRoot1() {
         return (-this.b + Math.sqrt(this.getDiscriminant())) / (2 * this.a);
     }
-    public double getRoot2(){
+
+    public double getRoot2() {
         return (-this.b - Math.sqrt(this.getDiscriminant())) / (2 * this.a);
     }
-    public double getDoubleRoot(){
+
+    public double getDoubleRoot() {
         return -this.b / 2 * this.a;
     }
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        double a,b,c;
+        do {
         System.out.println("Nhập a");
-        double a = input.nextDouble();
+        a = input.nextDouble();
         System.out.println("Nhập b");
-        double b = input.nextDouble();
+        b = input.nextDouble();
         System.out.println("Nhập c");
-        double c = input.nextDouble();
-
+        c = input.nextDouble();
+        if(a == 0){
+            System.out.println("a không được bằng 0");
+        }
+        }while (a == 0);
         QuadraticEquation quadraticEquation = new QuadraticEquation(a, b, c);
-        if(quadraticEquation.getDiscriminant() > 0){
+        if (quadraticEquation.getDiscriminant() > 0) {
             System.out.println("Nghiệm x1 của phương trình là: " + quadraticEquation.getRoot1());
             System.out.println("Nghiệm x2 của phương trình là: " + quadraticEquation.getRoot2());
-        }else if (quadraticEquation.getDiscriminant() == 0){
+        } else if (quadraticEquation.getDiscriminant() == 0) {
             System.out.println("Phương trình có nghiệm kép x = " + quadraticEquation.getDoubleRoot());
-        }else System.out.println("phương trình vô nghiệm");
+        } else System.out.println("phương trình vô nghiệm");
+
     }
 }
