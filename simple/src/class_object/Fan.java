@@ -34,22 +34,6 @@ public class Fan {
         return color;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public void setOn(boolean on) {
-        this.on = on;
-    }
-
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public String toString() {
         if (this.isOn()) {
             return "Speed: " + this.getSpeed() + ". Color: " + this.getColor() + " .Fan is on";
