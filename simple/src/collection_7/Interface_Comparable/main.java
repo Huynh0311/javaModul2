@@ -2,6 +2,7 @@ package collection_7.Interface_Comparable;
 
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class main {
     public static void main(String[] args) {
@@ -14,7 +15,8 @@ public class main {
         for (ComparableCircle circle : circles) {
             System.out.println(circle);
         }
-        Arrays.sort(circles);
+        Comparator circleComparator = new CircleComparator();
+        Arrays.sort(circles, circleComparator);
         System.out.println("After-sorted:");
         for (ComparableCircle circle:circles){
             System.out.println(circle);
