@@ -13,11 +13,11 @@ public class main {
 
         int temp = n;
         int du;
-        do {
+        while (temp != 0) {
             du = temp % 2;
             integerStack.push(du);
             temp = temp / 2;
-        }while (temp != 0);
+        }
         int size = integerStack.size();
         for (int i = 0; i < size; i++) {
             System.out.print(integerStack.pop());
