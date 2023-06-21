@@ -1,6 +1,6 @@
-package BT_12_6;
+package BT_12_6_Animal;
 
-public class Dog extends Animal{
+public class Dog extends Animal {
     private String color;
     private String type;
 
@@ -25,6 +25,6 @@ public class Dog extends Animal{
         return "Dog " + super.toString() +
                 "color='" + color + '\'' +
                 ", type='" + type + '\'' +
-                ' ';
+                " ";
     }
 }

@@ -1,9 +1,10 @@
 package PersonManage.ManegerMent;
 
-public interface PersonManage<E> {
+public interface PersonInterface<E> {
     void add(E e);
-    void edit(E e);
+    void edit(int id, E e);
     void delete(int id);
-    void findByName(E e);
+    int findIndexById(int id);
+    String findByName(String name);
     E[] showAllOfficers();
 }

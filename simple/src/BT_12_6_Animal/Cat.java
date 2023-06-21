@@ -1,4 +1,4 @@
-package BT_12_6;
+package BT_12_6_Animal;
 
 public class Cat  extends Animal{
     private String eyeColor;
@@ -32,5 +32,13 @@ public class Cat  extends Animal{
     }
     public String healing(String heal, int amount){
         return "mèo được uống thuốc "+ heal + amount + " viên";
+    }
+
+    @Override
+    public String toString() {
+        return "Cat " + super.toString() +
+                "eyeColor='" + eyeColor +
+                ", type='" + type + '\'' +
+                " ";
     }
 }

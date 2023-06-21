@@ -1,6 +1,4 @@
-package BT_12_6;
-
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+package BT_12_6_Animal;
 
 public class main {
     public static void main(String[] args) {
@@ -20,7 +18,15 @@ public class main {
         }else {
             System.out.println(cat.healing("thuốc bắc ", 2));
         }
-
-
+        Manage manage = new Manage();
+        Dog dog1 = new Dog(0, "Chó", 2000, "red", "ngu");
+        Cat cat1 = new Cat(1, "meo", 2001, "blue", false, "anh long ngan");
+        manage.addAnimals(dog1);
+        manage.addAnimals(cat1);
+        manage.showAnimals();
+        manage.deleteAnimal(1);
+        manage.showAnimals();
+        manage.editAnimal(0, "cú", 2005);
+        manage.showAnimals();
     }
 }

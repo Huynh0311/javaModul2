@@ -1,4 +1,4 @@
-package BT_12_6;
+package BT_12_6_Animal;
 
 public class Animal {
     private int idAnimal;
@@ -19,10 +19,9 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal " +
-                "idAnimal=" + idAnimal +
-                ", name='" + name + '\'' +
-                ", birth=" + birth +
+        return "idAnimal=" + this.idAnimal +
+                ", name='" + this.name + '\'' +
+                ", birth=" + this.birth +
                 ' ';
     }
 
@@ -61,5 +60,5 @@ public class Animal {
         return animal instanceof Cat;
     }
 
-    
+
 }

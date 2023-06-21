@@ -1,4 +1,4 @@
-package BT_12_6;
+package BT_12_6_Animal;
 
 public class Bird extends Animal {
     private String Mo;

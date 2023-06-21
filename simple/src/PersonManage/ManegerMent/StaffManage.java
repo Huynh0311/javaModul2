@@ -1,2 +1,4 @@
-package PersonManage.ManegerMent;public class StaffManage {
+package PersonManage.ManegerMent;
+
+public class StaffManage {
 }

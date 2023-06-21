@@ -23,6 +23,7 @@ public class main {
                         }
                         System.out.println("");
                     }
+                    break;
                 case 2:
                     for (int i = 0; i < 5; i++) {
                         for (int j = 0; j <= i; j++) {
@@ -30,6 +31,7 @@ public class main {
                         }
                         System.out.println("");
                     }
+                    break;
                 case 3:
                     for (int i = 7;i >= 1;i--) {
                         for (int j = 1;j <= i; j++) {
@@ -37,6 +39,7 @@ public class main {
                         }
                         System.out.println("");
                     }
+                    break;
                 case 0:
                     System.exit(0);
                 default:

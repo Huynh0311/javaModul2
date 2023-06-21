@@ -1,31 +1,47 @@
 package Library_Manage.Manage;
 
+import Library_Manage.Model.Newspaper;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Newspaper implements Management {
+public class NewspaperManage implements Management<Newspaper> {
+    ArrayList<Newspaper> newspapers = new ArrayList<>();
 
     @Override
-    public void add(Object o) {
-
+    public void add(Newspaper newspaper) {
+        newspapers.add(newspaper);
     }
 
     @Override
-    public void edit(int id, Object o) {
-
+    public void edit(int id, Newspaper newspaper) {
+        int index = findIndexById(id);
+        if (index != -1) {
+            newspapers.set(index, newspaper);
+        }
     }
 
     @Override
     public void delete(int id) {
-
+        int index = findIndexById(id);
+        if (index > 0 || index < newspapers.size()) {
+            newspapers.remove(index);
+        }
     }
 
     @Override
     public int findIndexById(int id) {
-        return 0;
+        for (int i = 0; i < newspapers.size(); i++) {
+            if (newspapers.get(i).getId() == id) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
-    public List findAll() {
-        return null;
+    public List<Newspaper> findAll() {
+        return newspapers;
     }
 }

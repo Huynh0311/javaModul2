@@ -2,11 +2,11 @@ package PersonManage.ManegerMent;
 
 import PersonManage.Model.Worker;
 
-public class WorkerInterface implements PersonInterface<Worker> {
+public class WorkerManage implements PersonInterface<Worker> {
     private Worker[] workers;
     public static int size = -1;
 
-    public WorkerInterface() {
+    public WorkerManage() {
         this.workers = new Worker[100];
     }
 
@@ -26,7 +26,12 @@ public class WorkerInterface implements PersonInterface<Worker> {
 
     @Override
     public void delete(int id) {
-
+        int index = findIndexById(id);
+        for (int i = 0; i < size -1; i++) {
+            this.workers[i] = this.workers[i+1];
+        }
+        this.workers[size -1] = null;
+        size--;
     }
 
     @Override
@@ -40,8 +45,13 @@ public class WorkerInterface implements PersonInterface<Worker> {
     }
 
     @Override
-    public void findByName(Worker worker) {
-
+    public String findByName(String name) {
+        for (int i = 0; i < size; i++) {
+            if(this.workers[i].getName() == name){
+                return this.workers[i].getName();
+            }
+        }
+        return null;
     }
 
     @Override
