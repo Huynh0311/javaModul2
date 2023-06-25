@@ -1,4 +1,4 @@
-package collection_15.Sort_select.Sort_Foamy_input;
+package collection_14.Sort_Foamy_input;
 
 import java.util.Scanner;
 
