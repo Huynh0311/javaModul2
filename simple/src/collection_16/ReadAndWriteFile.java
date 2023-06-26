@@ -15,7 +15,7 @@ public class ReadAndWriteFile {
                 throw new FileNotFoundException();
             }
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String line = null;
+            String line = "";
             while ((line = bufferedReader.readLine()) != null) {
                 numbers.add(Integer.parseInt(line));
             }
@@ -50,8 +50,8 @@ public class ReadAndWriteFile {
 
     public static void main(String[] args) {
         ReadAndWriteFile readAndWriteFile = new ReadAndWriteFile();
-        List<Integer> numbers = readAndWriteFile.readFile("D:\\Code-Gym\\javaMd2\\simple\\src\\collection_16\\file.txt");
+        List<Integer> numbers = readAndWriteFile.readFile("simple/src/collection_16/file.txt");
         int maxValue = findMax(numbers);
-        readAndWriteFile.writeFile("D:\\Code-Gym\\javaMd2\\simple\\src\\collection_16\\text.txt", maxValue);
+        readAndWriteFile.writeFile("simple/src/collection_16/text.txt", maxValue);
     }
 }
