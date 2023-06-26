@@ -7,14 +7,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TownMenu {
-    private Scanner inputNumber = new Scanner(System.in);
-    private Scanner inputString = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
     Town town = new Town();
     FamilyMenu familyMenu = new FamilyMenu();
     public void showAddFamily() {
         System.out.println("==== Menu thêm mới nhà =====");
         System.out.println("Nhập ID");
-        int id = inputNumber.nextInt();
+        int id = Integer.parseInt(input.nextLine());
         Family family = new Family(id);
         town.add(family);
     }
@@ -28,12 +27,17 @@ public class TownMenu {
         str += "0. Trở lại Menu khu phố";
         System.out.println(str);
         System.out.println("Nhập lựa chọn: ");
-        try {
-            choice = inputNumber.nextInt();
-        } catch (InputMismatchException e) {
-            inputNumber.nextLine();
-            System.out.println("Vui lòng nhập số");
-            choice = inputNumber.nextInt();
+        while (true) {
+            try {
+                choice = Integer.parseInt(input.nextLine());
+                if (choice >= 0 && choice <= town.getAll().size()) {
+                    break;
+                } else {
+                    System.out.println("Bạn cần nhập đúng số trong menu");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui lòng nhập số dúng theo danh sách");
+            }
         }
         if (choice != 0) {
             familyMenu.showMenuPerson(town.getAll().get(choice - 1));
@@ -43,9 +47,9 @@ public class TownMenu {
     public void editFamily() {
         System.out.println("==== Menu chỉnh sửa nhà =====");
         System.out.println("Nhập ID nhà muốn sửa");
-        int id = inputNumber.nextInt();
+        int id = Integer.parseInt(input.nextLine());
         System.out.println("Nhập ID mới");
-        int idNew = inputNumber.nextInt();
+        int idNew = Integer.parseInt(input.nextLine());
         Family family = new Family(idNew);
         town.edit(id, family);
     }
@@ -53,7 +57,7 @@ public class TownMenu {
     public void deleteFamily() {
         System.out.println("==== Menu xóa nhà =====");
         System.out.println("Nhập ID nhà muốn xóa");
-        int id = inputNumber.nextInt();
+        int id = Integer.parseInt(input.nextLine());
         town.delete(id);
     }
 }

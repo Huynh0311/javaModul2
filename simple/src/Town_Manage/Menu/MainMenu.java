@@ -4,12 +4,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainMenu {
-    private Scanner inputNumber = new Scanner(System.in);
-    private Scanner inputString = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
     TownMenu townMenu = new TownMenu();
-    int choice;
 
     public void showMenuTown() {
+        int choice;
         do {
             System.out.println("===== Khu phố ======");
             System.out.println("1. Thêm nhà");
@@ -17,12 +16,17 @@ public class MainMenu {
             System.out.println("3. Xóa nhà");
             System.out.println("4. Danh sách các Nhà");
             System.out.println("Nhập lựa chọn: ");
-            try {
-                choice = inputNumber.nextInt();
-            } catch (InputMismatchException e) {
-                inputNumber.nextLine();
-                System.out.println("Vui lòng nhập số");
-                choice = inputNumber.nextInt();
+            while (true) {
+                try {
+                    choice = Integer.parseInt(input.nextLine());
+                    if (choice >= 0 && choice <= 4) {
+                        break;
+                    } else {
+                        System.out.println("Bạn cần nhập đúng số trong menu");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Vui lòng nhập số dúng theo danh sách");
+                }
             }
             switch (choice) {
                 case 1:
@@ -38,7 +42,6 @@ public class MainMenu {
                     townMenu.showMenuFamily();
                     break;
             }
-        } while (choice != 0);
-
+        }while (choice != 0);
     }
 }
