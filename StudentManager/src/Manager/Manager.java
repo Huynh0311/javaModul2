@@ -7,6 +7,6 @@ public interface Manager<E> {
     void edit(String id, E e);
     void delete(String id);
     int findIndexById(String id);
-    List<E> search(String name);
+    List<E> findByName(String name);
     List<E> getAll();
 }

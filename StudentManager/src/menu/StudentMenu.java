@@ -3,6 +3,8 @@ package menu;
 import Manager.StudentManage;
 import model.Student;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentMenu {
@@ -56,7 +58,15 @@ public class StudentMenu {
 
     public void addStudent() {
         System.out.println("Nhập ID");
-        String id = input.nextLine();
+        String id;
+        while (true) {
+            id = input.nextLine();
+            if (studentManage.findIndexById(id) == -1){
+                break;
+            }else {
+                System.out.println("ID đã có. Nhập lại ID");
+            }
+        }
         System.out.println("Nhập tên học sinh");
         String name = input.nextLine();
         System.out.println("Nhập tuổi học sinh");
@@ -77,14 +87,14 @@ public class StudentMenu {
         System.out.println("Thêm học sinh thành công");
         System.out.println("------------------------------");
     }
+
     public void editStudent() {
         System.out.println("==== Menu sửa học sinh ====");
         System.out.println("Nhập ID muốn sửa");
         String id = input.nextLine();
-        if(studentManage.findIndexById(id)  == -1){
+        if (studentManage.findIndexById(id) == -1) {
             System.out.println("Không tìm thấy ID");
-        }
-        else {
+        } else {
             System.out.println("Nhập tên học sinh mới");
             String name = input.nextLine();
             System.out.println("Nhập tuổi học sinh mới");
@@ -107,30 +117,37 @@ public class StudentMenu {
         }
 
     }
-    public void deleteStudent(){
+
+    public void deleteStudent() {
         System.out.println("******************************");
         System.out.println("Nhập ID học sinh muốn xóa");
         String id = input.nextLine();
-        if(studentManage.findIndexById(id)  == -1){
+        if (studentManage.findIndexById(id) == -1) {
             System.out.println("Không tìm thấy ID");
-        }
-        else {
+        } else {
             studentManage.delete(id);
             System.out.println("Xóa học sinh thành công");
             System.out.println("------------------------------");
         }
 
     }
-    public void SearchStudent(){
+
+    public void SearchStudent() {
         System.out.println("******************************");
         System.out.println("Nhập tên học sinh muốn tìm kiếm");
         String name = input.nextLine();
-        for (Student student: studentManage.search(name)) {
-        System.out.println(student);
+        List<Student> studentList = studentManage.findByName(name);
+        if (studentList.size() != 0) {
+            for (Student student : studentManage.findByName(name)) {
+                System.out.println();
+                System.out.println(student);
+            }
+        } else {
+            System.out.println("Không tìm thấy học sinh");
         }
         System.out.println("------------------------------");
-
     }
+
     public void showAllStudent() {
         System.out.println("==== Danh sách học sinh ====");
         for (int i = 0; i < studentManage.getAll().size(); i++) {

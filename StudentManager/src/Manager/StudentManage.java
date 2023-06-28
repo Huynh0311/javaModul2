@@ -49,17 +49,12 @@ public class StudentManage implements Manager<Student>{
     }
 
     @Override
-    public List<Student> search(String name) {
+    public List<Student> findByName(String name) {
         List<Student> studentList = new ArrayList<>();
-        boolean found = false;
         for (Student student : students) {
             if (student.getName().toLowerCase().contains(name.toLowerCase())) {
                 studentList.add(student);
-                found = true;
             }
-        }
-        if (!found) {
-            System.out.println("Không tìm thấy học sinh phù hợp.");
         }
         return studentList;
     }
