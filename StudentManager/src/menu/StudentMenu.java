@@ -1,3 +1,8 @@
+package menu;
+
+import Manager.StudentManage;
+import model.Student;
+
 import java.util.Scanner;
 
 public class StudentMenu {
@@ -76,41 +81,53 @@ public class StudentMenu {
         System.out.println("==== Menu sửa học sinh ====");
         System.out.println("Nhập ID muốn sửa");
         String id = input.nextLine();
-        System.out.println("Nhập tên học sinh mới");
-        String name = input.nextLine();
-        System.out.println("Nhập tuổi học sinh mới");
-        int age;
-        while (true) {
-            try {
-                age = Integer.parseInt(input.nextLine());
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Tuổi cần nhập bằng số");
-            }
+        if(studentManage.findIndexById(id)  == -1){
+            System.out.println("Không tìm thấy ID");
         }
-        System.out.println("Nhập quê quán mới");
-        String address = input.nextLine();
+        else {
+            System.out.println("Nhập tên học sinh mới");
+            String name = input.nextLine();
+            System.out.println("Nhập tuổi học sinh mới");
+            int age;
+            while (true) {
+                try {
+                    age = Integer.parseInt(input.nextLine());
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Tuổi cần nhập bằng số");
+                }
+            }
+            System.out.println("Nhập quê quán mới");
+            String address = input.nextLine();
 
-        Student student = new Student(id, name, age, address);
-        studentManage.edit(id, student);
-        System.out.println("Sửa học sinh thành công");
-        System.out.println("------------------------------");
+            Student student = new Student(id, name, age, address);
+            studentManage.edit(id, student);
+            System.out.println("Sửa học sinh thành công");
+            System.out.println("------------------------------");
+        }
 
     }
     public void deleteStudent(){
         System.out.println("******************************");
         System.out.println("Nhập ID học sinh muốn xóa");
         String id = input.nextLine();
-        studentManage.delete(id);
-        System.out.println("Xóa học sinh thành công");
-        System.out.println("------------------------------");
+        if(studentManage.findIndexById(id)  == -1){
+            System.out.println("Không tìm thấy ID");
+        }
+        else {
+            studentManage.delete(id);
+            System.out.println("Xóa học sinh thành công");
+            System.out.println("------------------------------");
+        }
 
     }
     public void SearchStudent(){
         System.out.println("******************************");
         System.out.println("Nhập tên học sinh muốn tìm kiếm");
         String name = input.nextLine();
-        studentManage.search(name);
+        for (Student student: studentManage.search(name)) {
+        System.out.println(student);
+        }
         System.out.println("------------------------------");
 
     }

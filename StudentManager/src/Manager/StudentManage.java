@@ -1,5 +1,11 @@
+package Manager;
+
+
 import java.util.ArrayList;
 import java.util.List;
+
+import file.ReadAndWriteStudent;
+import model.Student;
 
 public class StudentManage implements Manager<Student>{
     private ReadAndWriteStudent readAndWriteStudent = new ReadAndWriteStudent();
@@ -43,22 +49,19 @@ public class StudentManage implements Manager<Student>{
     }
 
     @Override
-    public void search(String name) {
+    public List<Student> search(String name) {
+        List<Student> studentList = new ArrayList<>();
         boolean found = false;
-        this.students = readAndWriteStudent.readFile();
         for (Student student : students) {
             if (student.getName().toLowerCase().contains(name.toLowerCase())) {
-                System.out.println("Student " +
-                        "id: " + student.getId() +
-                        ", name: " + student.getName() +
-                        ", age: " + student.getAge() +
-                        ", adress: " + student.getAddress());
+                studentList.add(student);
                 found = true;
             }
         }
         if (!found) {
             System.out.println("Không tìm thấy học sinh phù hợp.");
         }
+        return studentList;
     }
 
     @Override
