@@ -16,7 +16,7 @@ public class ReadAndWriteCustomer {
             }
             String data = "";
             for (Customer customer : customers) {
-                data += customer.getIdPerson() + "," + customer.getNamePerson() + "," +
+                data += customer.getIdPerson() + "," + customer.getNamePerson() + "," + customer.getPassword() + "," +
                         customer.getAge() + "," + customer.getGender() + "," +
                         customer.getPhone() + "," + customer.getAddress() + "\n";
             }
@@ -25,7 +25,7 @@ public class ReadAndWriteCustomer {
             bufferedWriter.write(data);
             bufferedWriter.close();
         } catch (Exception e) {
-            System.out.println("File không tồn tại hoặc nội dung có lỗi");
+            System.out.println("File không tồn tại hoặc nội dung có lỗi 2");
         }
     }
 
@@ -40,12 +40,12 @@ public class ReadAndWriteCustomer {
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.split(",");
-                customers.add(new Customer(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]),
-                        data[3], Integer.parseInt(data[4]), data[5]));
+                customers.add(new Customer(Integer.parseInt(data[0]), data[1], data[2], Integer.parseInt(data[3]),
+                        data[4], Integer.parseInt(data[5]), data[6]));
             }
             bufferedReader.close();
         } catch (Exception e) {
-            System.out.println("File không tồn tại hoặc nội dung có lỗi");
+            System.out.println("File không tồn tại hoặc nội dung có lỗi 2");
         }
         return customers;
     }

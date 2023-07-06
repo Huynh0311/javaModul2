@@ -67,6 +67,8 @@ public class MenuCustomer {
         int idPerson = checkInput();
         System.out.println("Nhập tên khách hàng");
         String namePerson = scanner.nextLine();
+        System.out.println("Nhập mật khẩu");
+        String password = scanner.nextLine();
         System.out.println("Nhập tuổi khách hàng");
         int age = checkInput();
         System.out.println("Nhập giới tính(0.Nữ | 1.Nam | 2.Khác)");
@@ -92,7 +94,7 @@ public class MenuCustomer {
         System.out.println("Nhập địa chỉ khách hàng");
         String address = scanner.nextLine();
 
-        Customer customer = new Customer(idPerson, namePerson, age, gender, phone, address);
+        Customer customer = new Customer(idPerson, namePerson, password, age, gender, phone, address);
         customerManage.add(customer);
     }
 
@@ -102,6 +104,8 @@ public class MenuCustomer {
         int idPerson = checkInput();
         System.out.println("Nhập tên khách hàng mới");
         String namePerson = scanner.nextLine();
+        System.out.println("Nhập mật khẩu mới");
+        String password = scanner.nextLine();
         System.out.println("Nhập tuổi khách hàng mới");
         int age = checkInput();
         System.out.println("Nhập giới tính(0.Nữ | 1.Nam | 2.Khác)");
@@ -127,7 +131,7 @@ public class MenuCustomer {
         System.out.println("Nhập địa chỉ khách hàng mới");
         String address = scanner.nextLine();
 
-        Customer customer = new Customer(idPerson, namePerson, age, gender, phone, address);
+        Customer customer = new Customer(idPerson, namePerson, password, age, gender, phone, address);
         customerManage.edit(idPerson, customer);
     }
 

@@ -7,6 +7,7 @@ public class Customer {
     private String gender;
     private int phone;
     private String address;
+    private String password;
 
 
     public int getIdPerson() {
@@ -23,6 +24,14 @@ public class Customer {
 
     public void setNamePerson(String namePerson) {
         this.namePerson = namePerson;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getAge() {
@@ -57,9 +66,10 @@ public class Customer {
         this.address = address;
     }
 
-    public Customer(int idPerson, String namePerson, int age, String gender, int phone, String address) {
+    public Customer(int idPerson, String namePerson, String password, int age, String gender, int phone, String address) {
         this.idPerson = idPerson;
         this.namePerson = namePerson;
+        this.password = password;
         this.age = age;
         this.gender = gender;
         this.phone = phone;
@@ -70,6 +80,7 @@ public class Customer {
     public String toString() {
         return "Căn cước công dân: " + idPerson +
                 ", Tên khách hàng: " + namePerson +
+                ", Mật khẩu: " + password +
                 ", tuổi: " + age +
                 ", giới tính: " + gender +
                 ", điện thoại: " + phone +

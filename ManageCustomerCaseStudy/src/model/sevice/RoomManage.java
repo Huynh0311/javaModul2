@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RoomManage implements Management<Room> {
     private List<Room> rooms = new ArrayList<>();
-    ReadAndWriteRoom readAndWriteRoom = new ReadAndWriteRoom();
+    private ReadAndWriteRoom readAndWriteRoom = new ReadAndWriteRoom();
 
     public RoomManage() {
         this.rooms = this.readAndWriteRoom.readFile();

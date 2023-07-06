@@ -25,7 +25,7 @@ public class ReadAndWriteRoom {
             bufferedWriter.write(data);
             bufferedWriter.close();
         } catch (Exception e) {
-            System.out.println("Fie không tồn tại hoặc nội dung có lỗi!");
+            System.out.println("Fie không tồn tại hoặc nội dung có lỗi! 3");
         }
     }
 
@@ -44,7 +44,7 @@ public class ReadAndWriteRoom {
             }
             bufferedReader.close();
         } catch (Exception e) {
-            System.out.println("Nội dung không tồn tại hoặc file có lỗi");
+            System.out.println("Nội dung không tồn tại hoặc file có lỗi 3");
         }
         return rooms;
     }
