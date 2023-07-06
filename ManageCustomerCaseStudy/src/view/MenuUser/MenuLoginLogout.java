@@ -4,14 +4,17 @@ import model.entity.Customer;
 import model.sevice.CustomerManage;
 import view.CurrentUser;
 import view.MenuCustomer;
+import view.MenuOder;
 
 import java.util.Scanner;
 
 public class MenuLoginLogout {
     private CustomerManage customerManage = new CustomerManage();
     private MenuCustomer menuCustomer = new MenuCustomer();
+    private MenuOder menuOder = new MenuOder();
     private Scanner input = new Scanner(System.in);
-    public void showMenuLoginRegister(){
+
+    public void showMenuLoginRegister() {
         int choice;
         do {
             System.out.println("----- Trang chủ thuê phòng trọ -----");
@@ -31,7 +34,7 @@ public class MenuLoginLogout {
                     System.out.println("Vui lòng nhập đúng số trong menu");
                 }
             }
-            switch (choice){
+            switch (choice) {
                 case 1:
                     showMenuRegister();
                     break;
@@ -39,23 +42,32 @@ public class MenuLoginLogout {
                     showLogin();
                     break;
             }
-        }while (choice != 0);
+        } while (choice != 0);
     }
-    public void showMenuRegister(){
+
+    public void showMenuRegister() {
         menuCustomer.showAddCustomer();
     }
-    public void showLogin(){
-        System.out.println("Nhập số căn cước công dân");
+
+    public void showLogin() {
         while (true) {
+            System.out.println("Nhập số căn cước công dân");
             int idUser = Integer.parseInt(input.nextLine());
+            System.out.println("Nhập mật khẩu");
+            String passwordUser = input.nextLine();
+            boolean check = false;
             for (Customer customer : customerManage.getAll()) {
-                if (idUser == customer.getIdPerson()) {
+                if (idUser == customer.getIdPerson() && passwordUser.equals(customer.getPassword())) {
                     CurrentUser.idCurrentUser = idUser;
-                    return;
+                    check = true;
                 } else {
-                    System.out.println("Không có số căn cước này. Vui lòng nhập lại");
+                    System.out.println("Tài khoản hoặc mật khẩu không chính xác. Vui lòng nhập lại");
                 }
             }
+            if (check) {
+                break;
+            }
         }
+        menuOder.showOderMenu();
     }
 }

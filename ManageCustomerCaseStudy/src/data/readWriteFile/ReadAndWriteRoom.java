@@ -16,9 +16,9 @@ public class ReadAndWriteRoom {
             }
             String data = "";
             for (Room room : rooms) {
-                data += room.getIdPhong() + "," + room.isStatus() + "," +
-                        room.getSquareMeters() + "," + room.getMoneyRoom() + "," + room.getMoneyElectric() + "," +
-                        room.getMoneyWater() + "," + room.getMoneyInternet() + "," + room.getMoneyCleaning() + "\n";
+                data += room.getIdPhong() + "," + room.isStatus() + "," + room.getSquareMeters() +
+                        "," + room.getMoneyRoom() + "," + room.getMoneyElectric() + "," + room.getMoneyWater() +
+                        "," + room.getMoneyInternet() + "," + room.getMoneyCleaning() + "," + room.getSumMoneyOneMonth() + "\n";
             }
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
