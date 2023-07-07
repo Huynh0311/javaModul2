@@ -16,17 +16,20 @@ public class CustomerManage {
     }
 
     public void add(Customer customer) {
+        this.customers = readAndWriteCustomer.readFileCustomer();
         customers.add(customer);
         readAndWriteCustomer.writeFileCustomer(customers);
     }
 
     public void edit(int id, Customer customer) {
+        this.customers = readAndWriteCustomer.readFileCustomer();
         int index = findIndexById(id);
         customers.set(index, customer);
         readAndWriteCustomer.writeFileCustomer(customers);
     }
 
     public void delete(int id) {
+        this.customers = readAndWriteCustomer.readFileCustomer();
         int index = findIndexById(id);
         customers.remove(index);
         readAndWriteCustomer.writeFileCustomer(customers);
@@ -42,6 +45,6 @@ public class CustomerManage {
     }
 
     public List<Customer> getAll() {
-        return customers;
+        return readAndWriteCustomer.readFileCustomer();
     }
 }

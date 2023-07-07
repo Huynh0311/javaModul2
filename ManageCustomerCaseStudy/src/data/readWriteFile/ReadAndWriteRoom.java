@@ -16,7 +16,7 @@ public class ReadAndWriteRoom {
             }
             String data = "";
             for (Room room : rooms) {
-                data += room.getIdPhong() + "," + room.isStatus() + "," + room.getSquareMeters() +
+                data += room.getIdRoom() + "," + room.isStatus() + "," + room.getSquareMeters() +
                         "," + room.getMoneyRoom() + "," + room.getMoneyElectric() + "," + room.getMoneyWater() +
                         "," + room.getMoneyInternet() + "," + room.getMoneyCleaning() + "," + room.getSumMoneyOneMonth() + "\n";
             }

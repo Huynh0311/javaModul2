@@ -1,27 +1,15 @@
 package view;
 
+import check.CheckInput;
 import model.entity.Customer;
 import model.sevice.CustomerManage;
 
-import java.util.Currency;
 import java.util.Scanner;
 
 public class MenuCustomer {
     private Scanner scanner = new Scanner(System.in);
     private CustomerManage customerManage = new CustomerManage();
-
-    public int checkInput() {
-        int input;
-        while (true) {
-            try {
-                input = Integer.parseInt(scanner.nextLine());
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Input Phai La Dang So");
-            }
-        }
-        return input;
-    }
+    private CheckInput checkInput = new CheckInput();
 
     public void showMenuCustomer() {
         int choice;
@@ -64,13 +52,21 @@ public class MenuCustomer {
     public void showAddCustomer() {
         System.out.println("+++++ Menu thêm khách hàng +++++");
         System.out.println("Nhập Căn cước công dân khách hàng");
-        int idPerson = checkInput();
+        int idPerson;
+        while (true) {
+            idPerson = checkInput.checkInputInt();
+            if (customerManage.findIndexById(idPerson) == -1) {
+                break;
+            } else {
+                System.out.println("Số căn cước công dân đã tồn tại. Nhập lại số khác");
+            }
+        }
         System.out.println("Nhập tên khách hàng");
         String namePerson = scanner.nextLine();
         System.out.println("Nhập mật khẩu");
         String password = scanner.nextLine();
         System.out.println("Nhập tuổi khách hàng");
-        int age = checkInput();
+        int age = checkInput.checkInputInt();
         System.out.println("Nhập giới tính(0.Nữ | 1.Nam | 2.Khác)");
         String gender = scanner.nextLine();
         while (true) {
@@ -90,7 +86,7 @@ public class MenuCustomer {
             }
         }
         System.out.println("Nhập số điện thoại khách hàng");
-        int phone = checkInput();
+        int phone = checkInput.checkInputInt();
         System.out.println("Nhập địa chỉ khách hàng");
         String address = scanner.nextLine();
 
@@ -101,13 +97,13 @@ public class MenuCustomer {
     public void showEditCustomer() {
         System.out.println("+++++ Menu sửa khách hàng +++++");
         System.out.println("Nhập Căn cước công dân khách hàng");
-        int idPerson = checkInput();
+        int idPerson = checkInput.checkInputInt();
         System.out.println("Nhập tên khách hàng mới");
         String namePerson = scanner.nextLine();
         System.out.println("Nhập mật khẩu mới");
         String password = scanner.nextLine();
         System.out.println("Nhập tuổi khách hàng mới");
-        int age = checkInput();
+        int age = checkInput.checkInputInt();
         System.out.println("Nhập giới tính(0.Nữ | 1.Nam | 2.Khác)");
         String gender = scanner.nextLine();
         while (true) {
@@ -127,7 +123,7 @@ public class MenuCustomer {
             }
         }
         System.out.println("Nhập số điện thoại khách hàng mới");
-        int phone = checkInput();
+        int phone = checkInput.checkInputInt();
         System.out.println("Nhập địa chỉ khách hàng mới");
         String address = scanner.nextLine();
 
@@ -138,9 +134,9 @@ public class MenuCustomer {
     public void deleteCustomer() {
         System.out.println("+++++ Menu xóa khách hàng +++++");
         System.out.println("Nhập Căn cước công dân khách hàng muốn xóa");
-        int idPerson = checkInput();
+        int idPerson = checkInput.checkInputInt();
         if (customerManage.findIndexById(idPerson) == -1) {
-            System.out.println("Không tìm thấy mã phòng");
+            System.out.println("Không tìm thấy căn cước công dân vừa nhập");
         } else {
             customerManage.delete(idPerson);
             System.out.println("Xóa khách hàng thành công");

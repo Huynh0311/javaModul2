@@ -16,12 +16,14 @@ public class RoomManage implements Management<Room> {
 
     @Override
     public void add(Room room) {
+        this.rooms = this.readAndWriteRoom.readFile();
         rooms.add(room);
         readAndWriteRoom.writeFile(rooms);
     }
 
     @Override
     public void edit(String id, Room room) {
+        this.rooms = this.readAndWriteRoom.readFile();
         int index = findIndexById(id);
         rooms.set(index, room);
         this.readAndWriteRoom.writeFile(rooms);
@@ -29,6 +31,7 @@ public class RoomManage implements Management<Room> {
 
     @Override
     public void delete(String id) {
+        this.rooms = this.readAndWriteRoom.readFile();
         int index = findIndexById(id);
         rooms.remove(index);
         this.readAndWriteRoom.writeFile(rooms);
@@ -37,7 +40,7 @@ public class RoomManage implements Management<Room> {
     @Override
     public int findIndexById(String id) {
         for (int i = 0; i < rooms.size(); i++) {
-            if (id.equals(rooms.get(i).getIdPhong())) {
+            if (id.equals(rooms.get(i).getIdRoom())) {
                 return i;
             }
         }
@@ -66,6 +69,6 @@ public class RoomManage implements Management<Room> {
 
     @Override
     public List<Room> getAll() {
-        return rooms;
+        return readAndWriteRoom.readFile();
     }
 }

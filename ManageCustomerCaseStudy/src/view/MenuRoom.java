@@ -1,5 +1,6 @@
 package view;
 
+import check.CheckInput;
 import model.entity.Room;
 import model.sevice.RoomManage;
 
@@ -8,18 +9,7 @@ import java.util.Scanner;
 public class MenuRoom {
     private Scanner input = new Scanner(System.in);
     private RoomManage roomManage = new RoomManage();
-    public double checkInputDouble(){
-        double inputDouble;
-        while (true){
-            try {
-                inputDouble = Double.parseDouble(input.nextLine());
-                break;
-            }catch (NumberFormatException e){
-                System.out.println("Nhập vào là số");
-            }
-        }
-        return inputDouble;
-    }
+    private CheckInput checkInput = new CheckInput();
 
     public void showMenuRoom() {
         int choice;
@@ -81,7 +71,7 @@ public class MenuRoom {
             }
         }
         System.out.println("Trạng thái phòng (0.chưa được thuê/1.đã được thuê)");
-        int checkStatus = Integer.parseInt(input.nextLine());
+        int checkStatus = checkInput.checkInputInt();
         boolean status;
         while (true) {
             if (checkStatus == 0) {
@@ -93,21 +83,21 @@ public class MenuRoom {
             } else {
                 System.out.println("Nhập vào số 0 hoặc 1");
                 System.out.println("Trạng thái phòng (0.chưa được thuê/1.đã được thuê)");
-                checkStatus = Integer.parseInt(input.nextLine());
+                checkStatus = checkInput.checkInputInt();
             }
         }
         System.out.println("Nhập diện tích phòng");
-        double squareMeters = checkInputDouble();
+        double squareMeters = checkInput.checkInputDouble();
         System.out.println("Nhập tiền phòng");
-        double moneyRoom = checkInputDouble();
+        double moneyRoom = checkInput.checkInputDouble();
         System.out.println("Nhập tiền điện / 1 số");
-        double moneyElectric = checkInputDouble();
+        double moneyElectric = checkInput.checkInputDouble();
         System.out.println("Nhập tiền nước / đầu người");
-        double moneyWater = checkInputDouble();
+        double moneyWater = checkInput.checkInputDouble();
         System.out.println("Nhập tiền mạng / đầu người");
-        double moneyInternet = checkInputDouble();
+        double moneyInternet = checkInput.checkInputDouble();
         System.out.println("Nhập tiền vệ sinh / đầu người");
-        double moneyCleaning = checkInputDouble();
+        double moneyCleaning = checkInput.checkInputDouble();
 
         Room room = new Room(idRoom, status, squareMeters, moneyRoom, moneyElectric, moneyWater, moneyInternet, moneyCleaning);
         roomManage.add(room);
@@ -122,7 +112,7 @@ public class MenuRoom {
                 System.out.println("Không tìm thấy mã phòng. Nhập lại mã phòng");
             } else {
                 System.out.println("Trạng thái phòng (0.chưa được thuê/1.đã được thuê)");
-                int checkStatus = Integer.parseInt(input.nextLine());
+                int checkStatus = checkInput.checkInputInt();
                 boolean status;
                 while (true) {
                     if (checkStatus == 0) {
@@ -134,21 +124,21 @@ public class MenuRoom {
                     } else {
                         System.out.println("Nhập vào số 0 hoặc 1");
                         System.out.println("Trạng thái phòng (0.chưa được thuê/1.đã được thuê)");
-                        checkStatus = Integer.parseInt(input.nextLine());
+                        checkStatus = checkInput.checkInputInt();
                     }
                 }
                 System.out.println("Nhập diện tích phòng");
-                double squareMeters = checkInputDouble();
+                double squareMeters = checkInput.checkInputDouble();
                 System.out.println("Nhập tiền phòng");
-                double moneyRoom = checkInputDouble();
+                double moneyRoom = checkInput.checkInputDouble();
                 System.out.println("Nhập tiền điện / 1 số");
-                double moneyElectric = checkInputDouble();
+                double moneyElectric = checkInput.checkInputDouble();
                 System.out.println("Nhập tiền nước / đầu người");
-                double moneyWater = checkInputDouble();
+                double moneyWater = checkInput.checkInputDouble();
                 System.out.println("Nhập tiền mạng / đầu người");
-                double moneyInternet = checkInputDouble();
+                double moneyInternet = checkInput.checkInputDouble();
                 System.out.println("Nhập tiền vệ sinh / đầu người");
-                double moneyCleaning = checkInputDouble();
+                double moneyCleaning = checkInput.checkInputDouble();
 
                 Room room = new Room(idRoom, status, squareMeters, moneyRoom, moneyElectric, moneyWater, moneyInternet, moneyCleaning);
                 roomManage.edit(idRoom, room);
@@ -209,6 +199,8 @@ public class MenuRoom {
     public void showAllRoom() {
         for (Room room : roomManage.getAll()) {
             System.out.println(room);
+            System.out.println();
         }
+        System.out.println("******************");
     }
 }

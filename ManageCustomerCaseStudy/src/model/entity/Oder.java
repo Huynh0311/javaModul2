@@ -9,27 +9,23 @@ public class Oder {
     private String idRoom;
     private String idOder;
     private static int count;
-    private boolean status;
     private String timeStartOder;
-    private String timeOder;
 
     static {
         RAWOder rawOder = new RAWOder();
         List<Oder> oders = rawOder.readFileOder();
-        if(!oders.isEmpty())
+        if (!oders.isEmpty())
             count = oders.size();
     }
 
     public Oder() {
     }
 
-    public Oder(int idCustomer, String idRoom, boolean status, String timeStartOder, String timeOder) {
+    public Oder(int idCustomer, String idRoom, String timeStartOder) {
         this.idCustomer = idCustomer;
         this.idRoom = idRoom;
         this.idOder = "Bill - " + ++count;
-        this.status = status;
         this.timeStartOder = timeStartOder;
-        this.timeOder = timeOder;
     }
 
     public int getIdCustomer() {
@@ -56,14 +52,6 @@ public class Oder {
         this.idOder = idOder;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     public String getTimeStartOder() {
         return timeStartOder;
     }
@@ -72,25 +60,15 @@ public class Oder {
         this.timeStartOder = timeStartOder;
     }
 
-    public String getTimeOder() {
-        return timeOder;
-    }
-
-    public void setTimeOder(String timeOder) {
-        this.timeOder = timeOder;
-    }
-
     @Override
     public String toString() {
-        return  "idCustomer: " + idCustomer +
-                ", idRoom: " + idRoom +
-                ", idOder: " + idOder +
-                ", Status:" + status +
-                ", timeStartOder " + timeStartOder +
-                ", timeOder='" + timeOder;
+        return idOder +
+                ", mã khách hàng: " + idCustomer +
+                ", mã phòng: " + idRoom +
+                ", thời gian bắt đầu thuê: " + timeStartOder;
     }
 
     public String writeOder() {
-        return  idCustomer + "," + idRoom + "," + idOder + "," + status + "," + timeStartOder + "," + timeOder + "\n";
+        return idCustomer + "," + idRoom + "," + idOder + "," + timeStartOder + "\n";
     }
 }

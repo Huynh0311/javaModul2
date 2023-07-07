@@ -2,7 +2,7 @@ package model.entity;
 
 public class Room {
     private boolean status;
-    private String idPhong;
+    private String idRoom;
     private double squareMeters;
     private double moneyRoom;
     private double moneyElectric;
@@ -19,12 +19,12 @@ public class Room {
         this.status = status;
     }
 
-    public String getIdPhong() {
-        return idPhong;
+    public String getIdRoom() {
+        return idRoom;
     }
 
-    public void setIdPhong(String idPhong) {
-        this.idPhong = idPhong;
+    public void setIdRoom(String idRoom) {
+        this.idRoom = idRoom;
     }
 
     public double getSquareMeters() {
@@ -83,8 +83,8 @@ public class Room {
         this.sumMoneyOneMonth = sumMoneyOneMonth;
     }
 
-    public Room(String idPhong, boolean status, double squareMeters, double moneyRoom, double moneyElectric, double moneyWater, double moneyInternet, double moneyCleaning) {
-        this.idPhong = idPhong;
+    public Room(String idRoom, boolean status, double squareMeters, double moneyRoom, double moneyElectric, double moneyWater, double moneyInternet, double moneyCleaning) {
+        this.idRoom = idRoom;
         this.status = status;
         this.squareMeters = squareMeters;
         this.moneyRoom = moneyRoom;
@@ -98,25 +98,25 @@ public class Room {
     @Override
     public String toString() {
         if (status) {
-            return "Mã phòng: " + idPhong +
-                    ", Trạng thái: Đã được thuê" +
-                    ", Diện tích phòng: " + squareMeters +
-                    ", Tiền phòng: " + moneyRoom +
-                    ", Tiền điện: " + moneyElectric + " đồng / 1 số" +
-                    ", Tiền nước: " + moneyWater + " đồng / người" +
-                    ", Tiền mạng: " + moneyInternet + " đồng / người" +
-                    ", Tiền vệ sinh: " + moneyCleaning + " đồng / người." +
-                    ", Tổng tiền trả cho 1 tháng: " + sumMoneyOneMonth;
+            return "Mã phòng: " + idRoom + "\n" +
+                    "Trạng thái: Đã được thuê" + "\n" +
+                    "Diện tích phòng: " + squareMeters + "\n" +
+                    "Tiền phòng: " + moneyRoom + " đồng / 1 tháng" + "\n" +
+                    "Tiền điện: " + moneyElectric + " đồng / 1 số" + "\n" +
+                    "Tiền nước: " + moneyWater + " đồng / người" + "\n" +
+                    "Tiền mạng: " + moneyInternet + " đồng / người" + "\n" +
+                    "Tiền vệ sinh: " + moneyCleaning + " đồng / người." + "\n" +
+                    "Tổng tiền trả cho 1 tháng: " + sumMoneyOneMonth;
         } else {
-            return "Mã phòng: " + idPhong +
-                    ", Trạng thái: Còn trống" +
-                    ", Diện tích phòng: " + squareMeters +
-                    ", Tiền phòng: " + moneyRoom +
-                    ", Tiền điện: " + moneyElectric + " đồng / 1 số" +
-                    ", Tiền nước: " + moneyWater + " đồng / người" +
-                    ", Tiền mạng: " + moneyInternet + " đồng / người" +
-                    ", Tiền vệ sinh: " + moneyCleaning + " đồng / người." +
-                    ", Tổng tiền trả cho 1 tháng: " + sumMoneyOneMonth;
+            return "Mã phòng: " + idRoom + "\n" +
+                    "Trạng thái: Còn trống" + "\n" +
+                    "Diện tích phòng: " + squareMeters + "\n" +
+                    "Tiền phòng: " + moneyRoom + " đồng / 1 tháng" + "\n" +
+                    "Tiền điện: " + moneyElectric + " đồng / 1 số" + "\n" +
+                    "Tiền nước: " + moneyWater + " đồng / người" + "\n" +
+                    "Tiền mạng: " + moneyInternet + " đồng / người" + "\n" +
+                    "Tiền vệ sinh: " + moneyCleaning + " đồng / người." + "\n" +
+                    "Tổng tiền trả cho 1 tháng: " + sumMoneyOneMonth;
         }
     }
 }

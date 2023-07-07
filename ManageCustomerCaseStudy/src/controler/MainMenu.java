@@ -2,16 +2,16 @@ package controler;
 
 import view.MenuCustomer;
 import view.MenuRoom;
-import view.MenuUser.MenuLoginLogout;
+import view.MenuStart;
 
 public class MainMenu {
     private  static MenuRoom menuRoom = new MenuRoom();
     private static MenuCustomer menuCustomer = new MenuCustomer();
-    private static MenuLoginLogout menuLoginLogout = new MenuLoginLogout();
+    private static MenuStart menuStart = new MenuStart();
 
     public static void main(String[] args) {
 //        menuRoom.showMenuRoom();
 //        menuCustomer.showMenuCustomer();
-        menuLoginLogout.showMenuLoginRegister();
+        menuStart.showMenuLoginRegister();
     }
 }

@@ -44,9 +44,7 @@ public class RAWOder {
                 Oder oder = new Oder();
                 oder.setIdCustomer(Integer.parseInt(data[0]));
                 oder.setIdRoom(data[1]);
-                oder.setStatus(Boolean.parseBoolean(data[3]));
-                oder.setTimeStartOder(data[4]);
-                oder.setTimeOder(data[5]);
+                oder.setTimeStartOder(data[3]);
                 oder.setIdOder(data[2]);
                 oders.add(oder);
             }

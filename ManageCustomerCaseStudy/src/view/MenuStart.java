@@ -1,16 +1,16 @@
-package view.MenuUser;
+package view;
 
 import model.entity.Customer;
 import model.sevice.CustomerManage;
-import view.CurrentUser;
-import view.MenuCustomer;
-import view.MenuOder;
+import view.MenuUser.CurrentUser;
+import view.menuAdmin.MenuAdmin;
 
 import java.util.Scanner;
 
-public class MenuLoginLogout {
+public class MenuStart {
     private CustomerManage customerManage = new CustomerManage();
     private MenuCustomer menuCustomer = new MenuCustomer();
+    private MenuAdmin menuAdmin = new MenuAdmin();
     private MenuOder menuOder = new MenuOder();
     private Scanner input = new Scanner(System.in);
 
@@ -39,7 +39,7 @@ public class MenuLoginLogout {
                     showMenuRegister();
                     break;
                 case 2:
-                    showLogin();
+                    showLoginUser();
                     break;
             }
         } while (choice != 0);
@@ -49,25 +49,24 @@ public class MenuLoginLogout {
         menuCustomer.showAddCustomer();
     }
 
-    public void showLogin() {
-        while (true) {
+    public void showLoginUser() {
             System.out.println("Nhập số căn cước công dân");
             int idUser = Integer.parseInt(input.nextLine());
             System.out.println("Nhập mật khẩu");
             String passwordUser = input.nextLine();
-            boolean check = false;
             for (Customer customer : customerManage.getAll()) {
                 if (idUser == customer.getIdPerson() && passwordUser.equals(customer.getPassword())) {
                     CurrentUser.idCurrentUser = idUser;
-                    check = true;
-                } else {
+                    menuOder.showOderMenu();
+                    break;
+                }else if (idUser == 123456 && passwordUser.equals("123456")){
+                    menuAdmin.showMenuAdmin();
+                    break;
+                }else {
                     System.out.println("Tài khoản hoặc mật khẩu không chính xác. Vui lòng nhập lại");
+                    break;
                 }
             }
-            if (check) {
-                break;
-            }
-        }
-        menuOder.showOderMenu();
+
     }
 }
