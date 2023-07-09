@@ -5,7 +5,7 @@ import data.readWriteFile.RAWOder;
 import java.util.List;
 
 public class Oder {
-    private int idCustomer;
+    private String idCustomer;
     private String idRoom;
     private String idOder;
     private static int count;
@@ -21,18 +21,18 @@ public class Oder {
     public Oder() {
     }
 
-    public Oder(int idCustomer, String idRoom, String timeStartOder) {
+    public Oder(String idCustomer, String idRoom, String timeStartOder) {
         this.idCustomer = idCustomer;
         this.idRoom = idRoom;
         this.idOder = "Bill - " + ++count;
         this.timeStartOder = timeStartOder;
     }
 
-    public int getIdCustomer() {
+    public String getIdCustomer() {
         return idCustomer;
     }
 
-    public void setIdCustomer(int idCustomer) {
+    public void setIdCustomer(String idCustomer) {
         this.idCustomer = idCustomer;
     }
 

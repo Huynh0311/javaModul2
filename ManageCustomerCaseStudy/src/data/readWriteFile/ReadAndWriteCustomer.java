@@ -40,8 +40,8 @@ public class ReadAndWriteCustomer {
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.split(",");
-                customers.add(new Customer(Integer.parseInt(data[0]), data[1], data[2], Integer.parseInt(data[3]),
-                        data[4], Integer.parseInt(data[5]), data[6]));
+                customers.add(new Customer(data[0], data[1], data[2], Integer.parseInt(data[3]),
+                        data[4], data[5], data[6]));
             }
             bufferedReader.close();
         } catch (Exception e) {

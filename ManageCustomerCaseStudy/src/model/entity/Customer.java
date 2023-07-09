@@ -1,20 +1,20 @@
 package model.entity;
 
 public class Customer {
-    private int idPerson;
+    private String idPerson;
     private String namePerson;
     private int age;
     private String gender;
-    private int phone;
+    private String phone;
     private String address;
     private String password;
 
 
-    public int getIdPerson() {
+    public String getIdPerson() {
         return idPerson;
     }
 
-    public void setIdPerson(int idPerson) {
+    public void setIdPerson(String idPerson) {
         this.idPerson = idPerson;
     }
 
@@ -50,11 +50,11 @@ public class Customer {
         this.gender = gender;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -66,7 +66,7 @@ public class Customer {
         this.address = address;
     }
 
-    public Customer(int idPerson, String namePerson, String password, int age, String gender, int phone, String address) {
+    public Customer(String idPerson, String namePerson, String password, int age, String gender, String phone, String address) {
         this.idPerson = idPerson;
         this.namePerson = namePerson;
         this.password = password;
@@ -78,12 +78,12 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Căn cước công dân: " + idPerson +
-                ", Tên khách hàng: " + namePerson +
-                ", Mật khẩu: " + password +
-                ", tuổi: " + age +
-                ", giới tính: " + gender +
-                ", điện thoại: " + phone +
-                ", địa chỉ: " + address;
+        return "Căn cước công dân: " + idPerson + "\n" +
+                "Tên khách hàng: " + namePerson + "\n" +
+                "Mật khẩu: " + password + "\n" +
+                "Tuổi: " + age + "\n" +
+                "Giới tính: " + gender + "\n" +
+                "Điện thoại: " + phone + "\n" +
+                "Địa chỉ: " + address;
     }
 }

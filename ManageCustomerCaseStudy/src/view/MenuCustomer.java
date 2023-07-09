@@ -1,6 +1,8 @@
 package view;
 
 import check.CheckInput;
+import check.CheckRegex;
+import fontColor.SetFontColor;
 import model.entity.Customer;
 import model.sevice.CustomerManage;
 
@@ -10,11 +12,13 @@ public class MenuCustomer {
     private Scanner scanner = new Scanner(System.in);
     private CustomerManage customerManage = new CustomerManage();
     private CheckInput checkInput = new CheckInput();
+    private CheckRegex checkRegex = new CheckRegex();
+    private SetFontColor setFontColor = new SetFontColor();
 
     public void showMenuCustomer() {
         int choice;
         do {
-            System.out.println("+++++ Menu Khách Hàng +++++");
+            System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "+++++ Menu Khách Hàng +++++" + SetFontColor.RESET);
             System.out.println("1. Thêm khách hàng");
             System.out.println("2. Sửa khách hàng");
             System.out.println("3. Xóa khách hàng");
@@ -50,23 +54,59 @@ public class MenuCustomer {
     }
 
     public void showAddCustomer() {
-        System.out.println("+++++ Menu thêm khách hàng +++++");
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "+++++ Menu thêm khách hàng +++++" + SetFontColor.RESET);
         System.out.println("Nhập Căn cước công dân khách hàng");
-        int idPerson;
+        String idPerson;
         while (true) {
-            idPerson = checkInput.checkInputInt();
-            if (customerManage.findIndexById(idPerson) == -1) {
-                break;
+            idPerson = scanner.nextLine();
+            boolean checkIdPerson = checkRegex.validate(idPerson, CheckRegex.Regex_IdPerson);
+            if (checkIdPerson) {
+                if (customerManage.findIndexById(idPerson) == -1) {
+                    break;
+                } else {
+                    System.out.println(SetFontColor.RED_BOLD + "Số căn cước công dân đã tồn tại." + SetFontColor.RESET);
+                    System.out.println("Nhập Căn cước công dân khách hàng");
+                }
             } else {
-                System.out.println("Số căn cước công dân đã tồn tại. Nhập lại số khác");
+                System.out.println(SetFontColor.RED_BOLD + "Căn cước công dân phải có 12 số" + SetFontColor.RESET);
+                System.out.println("Nhập Căn cước công dân khách hàng");
             }
         }
         System.out.println("Nhập tên khách hàng");
-        String namePerson = scanner.nextLine();
+        String namePerson;
+        while (true) {
+            namePerson = scanner.nextLine();
+            boolean checkNamePerson = checkRegex.validate(namePerson, CheckRegex.Regex_Name);
+            if (checkNamePerson) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Tên không có khoảng trắng ở đầu và không có dấu" + SetFontColor.RESET);
+                System.out.println("Nhập tên khách hàng");
+            }
+        }
         System.out.println("Nhập mật khẩu");
-        String password = scanner.nextLine();
+        String password;
+        while (true) {
+            password = scanner.nextLine();
+            boolean checkPassword = checkRegex.validate(password, CheckRegex.Regex_PassWord);
+            if (checkPassword) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Mật khẩu chứa ít nhất 8 kí tự, có chữ thường, chữ in hoa, số và kí tự đặc biệt" + SetFontColor.RESET);
+                System.out.println("Nhập mật khẩu");
+            }
+        }
         System.out.println("Nhập tuổi khách hàng");
-        int age = checkInput.checkInputInt();
+        int age;
+        while (true) {
+            age = checkInput.checkInputInt();
+            if (age > 17) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Tuổi khách hàng phải từ 18 trở lên" + SetFontColor.RESET);
+                System.out.println("Nhập tuổi khách hàng");
+            }
+        }
         System.out.println("Nhập giới tính(0.Nữ | 1.Nam | 2.Khác)");
         String gender = scanner.nextLine();
         while (true) {
@@ -80,30 +120,92 @@ public class MenuCustomer {
                 gender = "Khác";
                 break;
             } else {
-                System.out.println("Cần nhập vào số 0, 1 hoặc 2");
+                System.out.println(SetFontColor.RED_BOLD + "Cần nhập vào số 0, 1 hoặc 2" + SetFontColor.RESET);
                 System.out.println("Nhập lại là số( 0.Nữ | 1.Nam | 2.Khác )");
                 gender = scanner.nextLine();
             }
         }
         System.out.println("Nhập số điện thoại khách hàng");
-        int phone = checkInput.checkInputInt();
-        System.out.println("Nhập địa chỉ khách hàng");
-        String address = scanner.nextLine();
+        String phone;
+        while (true) {
+            phone = scanner.nextLine();
+            boolean checkPhone = checkRegex.validate(phone, CheckRegex.Regex_Phone);
+            if (checkPhone) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Số điện thoại phải có số 0 ở đầu và có 10 số" + SetFontColor.RESET);
+                System.out.println("Nhập lại số điện thoại:");
+            }
+        }
+        System.out.println("Nhập địa chỉ khách hàng:");
+        String address;
+        while (true) {
+            address = scanner.nextLine();
+            boolean checkAddress = checkRegex.validate(address, CheckRegex.Regex_Address);
+            if (checkAddress) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Địa chỉ tối thiểu 3 kí tự." + SetFontColor.RESET);
+                System.out.println("Nhập lại địa chỉ:");
+            }
+        }
 
         Customer customer = new Customer(idPerson, namePerson, password, age, gender, phone, address);
         customerManage.add(customer);
+        System.out.println("Thêm thành công");
+        System.out.println("++++++++++++++++++++++++++");
+        System.out.println();
     }
 
     public void showEditCustomer() {
-        System.out.println("+++++ Menu sửa khách hàng +++++");
-        System.out.println("Nhập Căn cước công dân khách hàng");
-        int idPerson = checkInput.checkInputInt();
-        System.out.println("Nhập tên khách hàng mới");
-        String namePerson = scanner.nextLine();
-        System.out.println("Nhập mật khẩu mới");
-        String password = scanner.nextLine();
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "+++++ Menu sửa khách hàng +++++" + SetFontColor.RESET);
+        System.out.println("Nhập Căn cước công dân khách hàng:");
+        String idPerson;
+        while (true) {
+            idPerson = scanner.nextLine();
+            boolean checkIdPerson = checkRegex.validate(idPerson, CheckRegex.Regex_IdPerson);
+            if (checkIdPerson) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Căn cước công dân phải có 12 số." + SetFontColor.RESET);
+                System.out.println("Nhập Căn cước công dân khách hàng:");
+            }
+        }
+        System.out.println("Nhập tên khách hàng mới:");
+        String namePerson;
+        while (true) {
+            namePerson = scanner.nextLine();
+            boolean checkNamePerson = checkRegex.validate(namePerson, CheckRegex.Regex_Name);
+            if (checkNamePerson) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Tên không có khoảng trắng ở đầu và không có dấu." + SetFontColor.RESET);
+                System.out.println("Nhập tên khách hàng mới:");
+            }
+        }
+        System.out.println("Nhập mật khẩu mới:");
+        String password;
+        while (true) {
+            password = scanner.nextLine();
+            boolean checkPassword = checkRegex.validate(password, CheckRegex.Regex_PassWord);
+            if (checkPassword) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Mật khẩu chứa ít nhất 8 kí tự, có chữ thường, chữ in hoa, số và kí tự đặc biệt" + SetFontColor.RESET);
+                System.out.println("Nhập mật khẩu mới");
+            }
+        }
         System.out.println("Nhập tuổi khách hàng mới");
-        int age = checkInput.checkInputInt();
+        int age;
+        while (true) {
+            age = checkInput.checkInputInt();
+            if (age > 17) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Tuổi khách hàng phải từ 18 trở lên" + SetFontColor.RESET);
+                System.out.println("Nhập tuổi khách hàng");
+            }
+        }
         System.out.println("Nhập giới tính(0.Nữ | 1.Nam | 2.Khác)");
         String gender = scanner.nextLine();
         while (true) {
@@ -117,26 +219,49 @@ public class MenuCustomer {
                 gender = "Khác";
                 break;
             } else {
-                System.out.println("Cần nhập vào số 0, 1 hoặc 2");
+                System.out.println(SetFontColor.RED_BOLD + "Cần nhập vào số 0, 1 hoặc 2" + SetFontColor.RESET);
                 System.out.println("Nhập lại là số( 0.Nữ | 1.Nam | 2.Khác )");
                 gender = scanner.nextLine();
             }
         }
         System.out.println("Nhập số điện thoại khách hàng mới");
-        int phone = checkInput.checkInputInt();
+        String phone;
+        while (true) {
+            phone = scanner.nextLine();
+            boolean checkPhone = checkRegex.validate(phone, CheckRegex.Regex_Phone);
+            if (checkPhone) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Số điện thoại phải có số 0 ở đầu và có 10 số" + SetFontColor.RESET);
+                System.out.println("Nhập lại số điện thoại");
+            }
+        }
         System.out.println("Nhập địa chỉ khách hàng mới");
-        String address = scanner.nextLine();
+        String address;
+        while (true) {
+            address = scanner.nextLine();
+            boolean checkAddress = checkRegex.validate(address, CheckRegex.Regex_Address);
+            if (checkAddress) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Địa chỉ tối thiểu 3 kí tự" + SetFontColor.RESET);
+                System.out.println("Nhập lại địa chỉ");
+            }
+        }
 
         Customer customer = new Customer(idPerson, namePerson, password, age, gender, phone, address);
         customerManage.edit(idPerson, customer);
+        System.out.println("Sửa thành công");
+        System.out.println("++++++++++++++++++++++++++");
+        System.out.println();
     }
 
     public void deleteCustomer() {
-        System.out.println("+++++ Menu xóa khách hàng +++++");
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "+++++ Menu xóa khách hàng +++++" + SetFontColor.RESET);
         System.out.println("Nhập Căn cước công dân khách hàng muốn xóa");
-        int idPerson = checkInput.checkInputInt();
+        String idPerson = scanner.nextLine();
         if (customerManage.findIndexById(idPerson) == -1) {
-            System.out.println("Không tìm thấy căn cước công dân vừa nhập");
+            System.out.println(SetFontColor.RED_BOLD + "Không tìm thấy căn cước công dân vừa nhập" + SetFontColor.RESET);
         } else {
             customerManage.delete(idPerson);
             System.out.println("Xóa khách hàng thành công");
@@ -146,8 +271,10 @@ public class MenuCustomer {
     }
 
     public void showAllCustomer() {
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "++++++ Danh sách khách hàng ++++++" + SetFontColor.RESET);
         for (Customer customer : customerManage.getAll()) {
             System.out.println(customer);
+            System.out.println("------------------------");
         }
     }
 }

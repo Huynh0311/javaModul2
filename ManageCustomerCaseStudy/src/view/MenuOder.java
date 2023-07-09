@@ -34,7 +34,7 @@ public class MenuOder {
             System.out.println("4. Hiển thị Bill");
             System.out.println("5. Xem thông tin cá nhân");
             System.out.println("6. Sửa thông tin cá nhân");
-            System.out.println("0. Đăng xuất");
+            System.out.println("0. Thoát");
             System.out.println("Nhập lựa chọn");
             while (true) {
                 try {
@@ -73,11 +73,11 @@ public class MenuOder {
 
     public void addBillRoom() {
         System.out.println("+++++ Menu đặt phòng trọ +++++");
-        int idCustomer;
+        String idCustomer;
         while (true) {
             System.out.println("Nhập căn cước công dân");
-            idCustomer = checkInput.checkInputInt();
-            if (idCustomer != CurrentUser.idCurrentUser) {
+            idCustomer = input.nextLine();
+            if (!idCustomer.equals(CurrentUser.idCurrentUser)) {
                 System.out.println("Căn cước không trùng khớp với tài khoản đăng ký. vui lòng nhập lại");
             } else {
                 break;
@@ -115,7 +115,7 @@ public class MenuOder {
 
     public void showBill() {
         for (Oder oder : oderManage.showBill()) {
-            if (CurrentUser.idCurrentUser == oder.getIdCustomer()) {
+            if (CurrentUser.idCurrentUser.equals(oder.getIdCustomer())) {
                 System.out.println(oder);
             }
         }
@@ -131,7 +131,7 @@ public class MenuOder {
 
     public void showEditCustomer() {
         System.out.println("+++++ Menu sửa khách hàng +++++");
-        int idPerson = CurrentUser.idCurrentUser;
+        String idPerson = CurrentUser.idCurrentUser;
         System.out.println("Nhập tên khách hàng mới");
         String namePerson = input.nextLine();
         System.out.println("Nhập mật khẩu mới");
@@ -157,7 +157,7 @@ public class MenuOder {
             }
         }
         System.out.println("Nhập số điện thoại khách hàng mới");
-        int phone = checkInput.checkInputInt();
+        String phone = input.nextLine();
         System.out.println("Nhập địa chỉ khách hàng mới");
         String address = input.nextLine();
 

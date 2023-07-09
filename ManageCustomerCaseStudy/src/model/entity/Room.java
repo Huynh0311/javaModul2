@@ -100,7 +100,7 @@ public class Room {
         if (status) {
             return "Mã phòng: " + idRoom + "\n" +
                     "Trạng thái: Đã được thuê" + "\n" +
-                    "Diện tích phòng: " + squareMeters + "\n" +
+                    "Diện tích phòng: " + squareMeters + " m2" + "\n" +
                     "Tiền phòng: " + moneyRoom + " đồng / 1 tháng" + "\n" +
                     "Tiền điện: " + moneyElectric + " đồng / 1 số" + "\n" +
                     "Tiền nước: " + moneyWater + " đồng / người" + "\n" +
@@ -110,7 +110,7 @@ public class Room {
         } else {
             return "Mã phòng: " + idRoom + "\n" +
                     "Trạng thái: Còn trống" + "\n" +
-                    "Diện tích phòng: " + squareMeters + "\n" +
+                    "Diện tích phòng: " + squareMeters + " m2" + "\n" +
                     "Tiền phòng: " + moneyRoom + " đồng / 1 tháng" + "\n" +
                     "Tiền điện: " + moneyElectric + " đồng / 1 số" + "\n" +
                     "Tiền nước: " + moneyWater + " đồng / người" + "\n" +

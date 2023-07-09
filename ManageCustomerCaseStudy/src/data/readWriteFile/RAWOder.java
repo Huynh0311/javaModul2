@@ -42,7 +42,7 @@ public class RAWOder {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.split(",");
                 Oder oder = new Oder();
-                oder.setIdCustomer(Integer.parseInt(data[0]));
+                oder.setIdCustomer(data[0]);
                 oder.setIdRoom(data[1]);
                 oder.setTimeStartOder(data[3]);
                 oder.setIdOder(data[2]);

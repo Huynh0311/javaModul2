@@ -21,23 +21,23 @@ public class CustomerManage {
         readAndWriteCustomer.writeFileCustomer(customers);
     }
 
-    public void edit(int id, Customer customer) {
+    public void edit(String id, Customer customer) {
         this.customers = readAndWriteCustomer.readFileCustomer();
         int index = findIndexById(id);
         customers.set(index, customer);
         readAndWriteCustomer.writeFileCustomer(customers);
     }
 
-    public void delete(int id) {
+    public void delete(String id) {
         this.customers = readAndWriteCustomer.readFileCustomer();
         int index = findIndexById(id);
         customers.remove(index);
         readAndWriteCustomer.writeFileCustomer(customers);
     }
 
-    public int findIndexById(int id) {
+    public int findIndexById(String id) {
         for (int i = 0; i < customers.size(); i++) {
-            if (id == customers.get(i).getIdPerson()) {
+            if (id.equals(customers.get(i).getIdPerson())) {
                 return i;
             }
         }

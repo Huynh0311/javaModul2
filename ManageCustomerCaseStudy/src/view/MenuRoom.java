@@ -1,6 +1,7 @@
 package view;
 
 import check.CheckInput;
+import fontColor.SetFontColor;
 import model.entity.Room;
 import model.sevice.RoomManage;
 
@@ -14,7 +15,7 @@ public class MenuRoom {
     public void showMenuRoom() {
         int choice;
         do {
-            System.out.println("***** Menu Phòng Trọ *****");
+            System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "***** Menu Phòng Trọ *****" + SetFontColor.RESET);
             System.out.println("1. Thêm phòng");
             System.out.println("2. Sửa phòng");
             System.out.println("3. Xóa phòng");
@@ -29,10 +30,10 @@ public class MenuRoom {
                     if (choice >= 0 && choice <= 6) {
                         break;
                     } else {
-                        System.out.println("Bạn cần nhập đúng số trong menu");
+                        System.out.println(SetFontColor.RED_BOLD + "Bạn cần nhập đúng số trong menu" + SetFontColor.RESET);
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Vui lòng nhập đúng số trong menu");
+                    System.out.println(SetFontColor.RED_BOLD + "Vui lòng nhập đúng số trong menu" + SetFontColor.RESET);
                 }
             }
             switch (choice) {
@@ -59,7 +60,7 @@ public class MenuRoom {
     }
 
     public void showAddRoom() {
-        System.out.println("***** Menu Thêm phòng *****");
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "***** Menu Thêm phòng *****" + SetFontColor.RESET);
         System.out.println("Nhập mã phòng:");
         String idRoom;
         while (true) {
@@ -67,7 +68,7 @@ public class MenuRoom {
             if (roomManage.findIndexById(idRoom) == -1) {
                 break;
             } else {
-                System.out.println("Mã phòng đã có. Nhập lại mã phòng mới");
+                System.out.println(SetFontColor.RED_BOLD + "Mã phòng đã có. Nhập lại mã phòng mới" + SetFontColor.RESET);
             }
         }
         System.out.println("Trạng thái phòng (0.chưa được thuê/1.đã được thuê)");
@@ -81,7 +82,7 @@ public class MenuRoom {
                 status = true;
                 break;
             } else {
-                System.out.println("Nhập vào số 0 hoặc 1");
+                System.out.println(SetFontColor.RED_BOLD + "Nhập vào số 0 hoặc 1" + SetFontColor.RESET);
                 System.out.println("Trạng thái phòng (0.chưa được thuê/1.đã được thuê)");
                 checkStatus = checkInput.checkInputInt();
             }
@@ -104,7 +105,7 @@ public class MenuRoom {
     }
 
     public void showEditRoom() {
-        System.out.println("***** Menu sửa phòng *****");
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "***** Menu sửa phòng *****" + SetFontColor.RESET);
         while (true) {
             System.out.println("Nhập mã phòng cần sửa:");
             String idRoom = input.nextLine();
@@ -151,11 +152,12 @@ public class MenuRoom {
     }
 
     public void deleteRoom() {
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "***** Menu Xóa phòng *****" + SetFontColor.RESET);
         while (true) {
             System.out.println("Nhập mã phòng muốn xóa:");
             String idRoom = input.nextLine();
             if (roomManage.findIndexById(idRoom) == -1) {
-                System.out.println("Không tìm thấy mã phòng");
+                System.out.println(SetFontColor.RED_BOLD + "Không tìm thấy mã phòng" + SetFontColor.RESET);
             } else {
                 roomManage.delete(idRoom);
                 System.out.println("Xóa phòng thành công");
@@ -168,35 +170,38 @@ public class MenuRoom {
 
     public void findByStatusFalse() {
         System.out.println();
-        System.out.println("***** Danh sách phòng đang trống *****");
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "***** Danh sách phòng đang trống *****" + SetFontColor.RESET);
         boolean check = false;
         for (Room room : roomManage.findByStatusFalse()) {
+            System.out.println();
             System.out.println(room);
+            System.out.println("----------------------");
             check = true;
         }
         if (!check) {
             System.out.println("Tất cả các phòng đều đã có người thuê");
         }
-        System.out.println("--------------------------------------");
         System.out.println();
     }
 
     public void findByStatusTrue() {
         boolean check = false;
         System.out.println();
-        System.out.println("***** Danh sách phòng đã có người thuê *****");
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "***** Danh sách phòng đã có người thuê *****" + SetFontColor.RESET);
         for (Room room : roomManage.findByStatusTrue()) {
+            System.out.println();
             System.out.println(room);
+            System.out.println("---------------------------");
             check = true;
         }
         if (!check) {
             System.out.println("Tất cả các phòng đều đang trống");
         }
-        System.out.println("--------------------------------------");
         System.out.println();
     }
 
     public void showAllRoom() {
+        System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "***** Danh sách phòng *****" + SetFontColor.RESET);
         for (Room room : roomManage.getAll()) {
             System.out.println(room);
             System.out.println();

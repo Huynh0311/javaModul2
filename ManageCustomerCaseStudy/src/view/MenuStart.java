@@ -1,5 +1,7 @@
 package view;
 
+import check.CheckRegex;
+import fontColor.SetFontColor;
 import model.entity.Customer;
 import model.sevice.CustomerManage;
 import view.MenuUser.CurrentUser;
@@ -8,16 +10,18 @@ import view.menuAdmin.MenuAdmin;
 import java.util.Scanner;
 
 public class MenuStart {
+
     private CustomerManage customerManage = new CustomerManage();
     private MenuCustomer menuCustomer = new MenuCustomer();
     private MenuAdmin menuAdmin = new MenuAdmin();
     private MenuOder menuOder = new MenuOder();
     private Scanner input = new Scanner(System.in);
+    private CheckRegex checkRegex = new CheckRegex();
 
     public void showMenuLoginRegister() {
         int choice;
         do {
-            System.out.println("----- Trang chủ thuê phòng trọ -----");
+            System.out.println(SetFontColor.BLACK + SetFontColor.CYAN_BACKGROUND + "----- Trang chủ thuê phòng trọ -----" + SetFontColor.RESET);
             System.out.println("1. Đăng ký");
             System.out.println("2. Đăng Nhập");
             System.out.println("0. Thoát chương trình");
@@ -28,10 +32,10 @@ public class MenuStart {
                     if (choice >= 0 && choice <= 2) {
                         break;
                     } else {
-                        System.out.println("Bạn cần nhập đúng số trong menu");
+                        System.out.println(SetFontColor.RED_BOLD + "Bạn cần nhập đúng số trong menu" + SetFontColor.RESET);
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Vui lòng nhập đúng số trong menu");
+                    System.out.println(SetFontColor.RED_BOLD + "Vui lòng nhập đúng số trong menu" + SetFontColor.RESET);
                 }
             }
             switch (choice) {
@@ -50,23 +54,21 @@ public class MenuStart {
     }
 
     public void showLoginUser() {
-            System.out.println("Nhập số căn cước công dân");
-            int idUser = Integer.parseInt(input.nextLine());
-            System.out.println("Nhập mật khẩu");
-            String passwordUser = input.nextLine();
-            for (Customer customer : customerManage.getAll()) {
-                if (idUser == customer.getIdPerson() && passwordUser.equals(customer.getPassword())) {
-                    CurrentUser.idCurrentUser = idUser;
-                    menuOder.showOderMenu();
-                    break;
-                }else if (idUser == 123456 && passwordUser.equals("123456")){
-                    menuAdmin.showMenuAdmin();
-                    break;
-                }else {
-                    System.out.println("Tài khoản hoặc mật khẩu không chính xác. Vui lòng nhập lại");
-                    break;
-                }
+        System.out.println(SetFontColor.BLACK + SetFontColor.CYAN_BACKGROUND + "++++++ Menu đăng nhập ++++++" + SetFontColor.RESET);
+        System.out.println("Nhập tài khoản ( số căn cước công dân )");
+        String idUser = input.nextLine();
+        System.out.println("Nhập mật khẩu");
+        String passwordUser = input.nextLine();
+        for (Customer customer : customerManage.getAll()) {
+            if (idUser.equals(customer.getIdPerson()) && passwordUser.equals(customer.getPassword())) {
+                CurrentUser.idCurrentUser = idUser;
+                menuOder.showOderMenu();
+                break;
+            } else if (idUser.equals("Admin") && passwordUser.equals("123456")) {
+                menuAdmin.showMenuAdmin();
+                break;
             }
-
+        }
+        System.out.println("Tài khoản hoặc mật khẩu không chính xác. Vui lòng nhập lại");
     }
 }

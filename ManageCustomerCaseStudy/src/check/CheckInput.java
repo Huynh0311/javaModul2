@@ -1,5 +1,7 @@
 package check;
 
+import fontColor.SetFontColor;
+
 import java.util.Scanner;
 
 public class CheckInput {
@@ -12,7 +14,7 @@ public class CheckInput {
                 input = Integer.parseInt(scanner.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Nhập vào là số");
+                System.out.println(SetFontColor.RED_BOLD +"Nhập vào là số" + SetFontColor.RESET);
             }
         }
         return input;
@@ -24,7 +26,7 @@ public class CheckInput {
                 inputDouble = Double.parseDouble(scanner.nextLine());
                 break;
             }catch (NumberFormatException e){
-                System.out.println("Nhập vào là số");
+                System.out.println(SetFontColor.RED_BOLD + "Nhập vào là số" + SetFontColor.RESET);
             }
         }
         return inputDouble;
