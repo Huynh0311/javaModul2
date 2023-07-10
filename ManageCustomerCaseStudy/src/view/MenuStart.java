@@ -1,6 +1,5 @@
 package view;
 
-import check.CheckRegex;
 import fontColor.SetFontColor;
 import model.entity.Customer;
 import model.sevice.CustomerManage;
@@ -16,7 +15,6 @@ public class MenuStart {
     private MenuAdmin menuAdmin = new MenuAdmin();
     private MenuOder menuOder = new MenuOder();
     private Scanner input = new Scanner(System.in);
-    private CheckRegex checkRegex = new CheckRegex();
 
     public void showMenuLoginRegister() {
         int choice;
@@ -64,11 +62,11 @@ public class MenuStart {
                 CurrentUser.idCurrentUser = idUser;
                 menuOder.showOderMenu();
                 break;
-            } else if (idUser.equals("Admin") && passwordUser.equals("123456")) {
+            } else if (idUser.equals("Admin") && passwordUser.equals("Admin")) {
                 menuAdmin.showMenuAdmin();
                 break;
             }
         }
-        System.out.println("Tài khoản hoặc mật khẩu không chính xác. Vui lòng nhập lại");
+        System.out.println(SetFontColor.RED_BOLD + "Tài khoản hoặc mật khẩu không chính xác. Vui lòng nhập lại" + SetFontColor.RESET);
     }
 }

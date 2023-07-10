@@ -18,7 +18,7 @@ public class ReadAndWriteRoom {
             for (Room room : rooms) {
                 data += room.getIdRoom() + "," + room.isStatus() + "," + room.getSquareMeters() +
                         "," + room.getMoneyRoom() + "," + room.getMoneyElectric() + "," + room.getMoneyWater() +
-                        "," + room.getMoneyInternet() + "," + room.getMoneyCleaning() + "," + room.getSumMoneyOneMonth() + "\n";
+                        "," + room.getMoneyInternet() + "," + room.getMoneyCleaning() + "\n";
             }
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);

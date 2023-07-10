@@ -13,7 +13,6 @@ public class MenuCustomer {
     private CustomerManage customerManage = new CustomerManage();
     private CheckInput checkInput = new CheckInput();
     private CheckRegex checkRegex = new CheckRegex();
-    private SetFontColor setFontColor = new SetFontColor();
 
     public void showMenuCustomer() {
         int choice;
@@ -244,7 +243,7 @@ public class MenuCustomer {
             if (checkAddress) {
                 break;
             } else {
-                System.out.println(SetFontColor.RED_BOLD + "Địa chỉ tối thiểu 3 kí tự" + SetFontColor.RESET);
+                System.out.println(SetFontColor.RED_BOLD + "Địa chỉ tối thiểu 3 kí tự, và không có dấu" + SetFontColor.RESET);
                 System.out.println("Nhập lại địa chỉ");
             }
         }
@@ -272,8 +271,15 @@ public class MenuCustomer {
 
     public void showAllCustomer() {
         System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "++++++ Danh sách khách hàng ++++++" + SetFontColor.RESET);
-        for (Customer customer : customerManage.getAll()) {
-            System.out.println(customer);
+        if (customerManage.getAll().size() == 0) {
+            System.out.println(SetFontColor.RED_BOLD + "Hiện chưa có khách hàng nào" + SetFontColor.RESET);
+            System.out.println("------------------------");
+        } else {
+            System.out.println();
+            for (Customer customer : customerManage.getAll()) {
+                System.out.println(customer);
+                System.out.println();
+            }
             System.out.println("------------------------");
         }
     }

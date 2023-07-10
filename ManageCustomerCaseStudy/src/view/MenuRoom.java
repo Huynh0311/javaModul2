@@ -1,6 +1,7 @@
 package view;
 
 import check.CheckInput;
+import check.CheckRegex;
 import fontColor.SetFontColor;
 import model.entity.Room;
 import model.sevice.RoomManage;
@@ -11,6 +12,7 @@ public class MenuRoom {
     private Scanner input = new Scanner(System.in);
     private RoomManage roomManage = new RoomManage();
     private CheckInput checkInput = new CheckInput();
+    private CheckRegex checkRegex = new CheckRegex();
 
     public void showMenuRoom() {
         int choice;
@@ -61,10 +63,18 @@ public class MenuRoom {
 
     public void showAddRoom() {
         System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "***** Menu Thêm phòng *****" + SetFontColor.RESET);
-        System.out.println("Nhập mã phòng:");
         String idRoom;
         while (true) {
-            idRoom = input.nextLine();
+            System.out.println("Nhập mã phòng:");
+            while (true) {
+                idRoom = input.nextLine();
+                boolean checkIdRoom = checkRegex.validate(idRoom, CheckRegex.Regex_IdRoom);
+                if (checkIdRoom) {
+                    break;
+                } else {
+                    System.out.println(SetFontColor.RED_BOLD + "Mã phòng phải có chữ P ở đầu và ít nhất 1 số. Nhập lại mã phòng:" + SetFontColor.RESET);
+                }
+            }
             if (roomManage.findIndexById(idRoom) == -1) {
                 break;
             } else {
@@ -110,7 +120,7 @@ public class MenuRoom {
             System.out.println("Nhập mã phòng cần sửa:");
             String idRoom = input.nextLine();
             if (roomManage.findIndexById(idRoom) == -1) {
-                System.out.println("Không tìm thấy mã phòng. Nhập lại mã phòng");
+                System.out.println("Không tìm thấy mã phòng.");
             } else {
                 System.out.println("Trạng thái phòng (0.chưa được thuê/1.đã được thuê)");
                 int checkStatus = checkInput.checkInputInt();
@@ -202,10 +212,15 @@ public class MenuRoom {
 
     public void showAllRoom() {
         System.out.println(SetFontColor.BLACK + SetFontColor.BLUE_BACKGROUND + "***** Danh sách phòng *****" + SetFontColor.RESET);
-        for (Room room : roomManage.getAll()) {
-            System.out.println(room);
-            System.out.println();
+        if (roomManage.getAll().size() == 0) {
+            System.out.println(SetFontColor.RED_BOLD + "Hiện chưa có phòng nào" + SetFontColor.RESET);
+            System.out.println("******************");
+        } else {
+            for (Room room : roomManage.getAll()) {
+                System.out.println(room);
+                System.out.println("******************");
+                System.out.println();
+            }
         }
-        System.out.println("******************");
     }
 }

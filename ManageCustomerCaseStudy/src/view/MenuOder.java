@@ -2,6 +2,7 @@ package view;
 
 import check.CheckInput;
 import check.CheckRegex;
+import fontColor.SetFontColor;
 import model.entity.Customer;
 import model.entity.Oder;
 import model.entity.Room;
@@ -114,9 +115,13 @@ public class MenuOder {
     }
 
     public void showBill() {
-        for (Oder oder : oderManage.showBill()) {
-            if (CurrentUser.idCurrentUser.equals(oder.getIdCustomer())) {
-                System.out.println(oder);
+        if (oderManage.showBill().size() == 0) {
+            System.out.println(SetFontColor.RED_BOLD + "Hiện chưa có bill nào" + SetFontColor.RESET);
+        }else {
+            for (Oder oder : oderManage.showBill()) {
+                if (CurrentUser.idCurrentUser.equals(oder.getIdCustomer())) {
+                    System.out.println(oder);
+                }
             }
         }
     }
@@ -132,12 +137,41 @@ public class MenuOder {
     public void showEditCustomer() {
         System.out.println("+++++ Menu sửa khách hàng +++++");
         String idPerson = CurrentUser.idCurrentUser;
-        System.out.println("Nhập tên khách hàng mới");
-        String namePerson = input.nextLine();
+        System.out.println("Nhập tên mới");
+        String namePerson;
+        while (true) {
+            namePerson = input.nextLine();
+            boolean checkNamePerson = checkRegex.validate(namePerson, CheckRegex.Regex_Name);
+            if (checkNamePerson) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Tên không có khoảng trắng ở đầu và không có dấu." + SetFontColor.RESET);
+                System.out.println("Nhập lại tên:");
+            }
+        }
         System.out.println("Nhập mật khẩu mới");
-        String password = input.nextLine();
+        String password;
+        while (true) {
+            password = input.nextLine();
+            boolean checkPassword = checkRegex.validate(password, CheckRegex.Regex_PassWord);
+            if (checkPassword) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Mật khẩu chứa ít nhất 8 kí tự, có chữ thường, chữ in hoa, số và kí tự đặc biệt" + SetFontColor.RESET);
+                System.out.println("Nhập mật khẩu mới");
+            }
+        }
         System.out.println("Nhập tuổi khách hàng mới");
-        int age = checkInput.checkInputInt();
+        int age;
+        while (true) {
+            age = checkInput.checkInputInt();
+            if (age > 17) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Tuổi khách hàng phải từ 18 trở lên" + SetFontColor.RESET);
+                System.out.println("Nhập tuổi khách hàng");
+            }
+        }
         System.out.println("Nhập giới tính(0.Nữ | 1.Nam | 2.Khác)");
         String gender = input.nextLine();
         while (true) {
@@ -157,9 +191,29 @@ public class MenuOder {
             }
         }
         System.out.println("Nhập số điện thoại khách hàng mới");
-        String phone = input.nextLine();
+        String phone;
+        while (true) {
+            phone = input.nextLine();
+            boolean checkPhone = checkRegex.validate(phone, CheckRegex.Regex_Phone);
+            if (checkPhone) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Số điện thoại phải có số 0 ở đầu và có 10 số" + SetFontColor.RESET);
+                System.out.println("Nhập lại số điện thoại");
+            }
+        }
         System.out.println("Nhập địa chỉ khách hàng mới");
-        String address = input.nextLine();
+        String address;
+        while (true) {
+            address = input.nextLine();
+            boolean checkAddress = checkRegex.validate(address, CheckRegex.Regex_Address);
+            if (checkAddress) {
+                break;
+            } else {
+                System.out.println(SetFontColor.RED_BOLD + "Địa chỉ tối thiểu 3 kí tự, và không có dấu." + SetFontColor.RESET);
+                System.out.println("Nhập lại địa chỉ");
+            }
+        }
 
         Customer customer = new Customer(idPerson, namePerson, password, age, gender, phone, address);
         customerManage.edit(idPerson, customer);

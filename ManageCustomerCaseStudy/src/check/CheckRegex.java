@@ -11,8 +11,8 @@ public class CheckRegex {
     public static final String Regex_PassWord = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&.])[A-Za-z\\d@$!%*?&.]{8,}$";
     public static final String Regex_Age = "^18|[2-9][0-9]$";
     public static final String Regex_Address = "^[a-zA-Z0-9\\s,-]{3,}$";
-    public static final String Regex_Phone = "^[0][0-9]{3}-[0-9]{3}-[0-9]{3}$";
-    public static final String Regex_IdRoom = "^p|P\\d{1,2}$";
+    public static final String Regex_Phone = "^[0][0-9]{3}[0-9]{3}[0-9]{3}$";
+    public static final String Regex_IdRoom = "^P\\d{1,2}$";
 
     public boolean validate(String str, String regex) {
         pattern = Pattern.compile(regex);
@@ -22,7 +22,7 @@ public class CheckRegex {
 
     public static void main(String[] args) {
         CheckRegex checkRegex = new CheckRegex();
-        String str = "P12";
-        System.out.println(checkRegex.validate(str, Regex_IdRoom));
+        String str = "0378462518";
+        System.out.println(checkRegex.validate(str, Regex_Phone));
     }
 }

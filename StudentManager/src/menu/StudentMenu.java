@@ -2,8 +2,6 @@ package menu;
 
 import Manager.StudentManage;
 import model.Student;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 

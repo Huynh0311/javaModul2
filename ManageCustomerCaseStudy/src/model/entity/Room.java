@@ -92,7 +92,6 @@ public class Room {
         this.moneyWater = moneyWater;
         this.moneyInternet = moneyInternet;
         this.moneyCleaning = moneyCleaning;
-        this.sumMoneyOneMonth = this.moneyRoom + this.moneyElectric + this.moneyWater + this.moneyInternet + this.moneyCleaning;
     }
 
     @Override
@@ -105,8 +104,7 @@ public class Room {
                     "Tiền điện: " + moneyElectric + " đồng / 1 số" + "\n" +
                     "Tiền nước: " + moneyWater + " đồng / người" + "\n" +
                     "Tiền mạng: " + moneyInternet + " đồng / người" + "\n" +
-                    "Tiền vệ sinh: " + moneyCleaning + " đồng / người." + "\n" +
-                    "Tổng tiền trả cho 1 tháng: " + sumMoneyOneMonth;
+                    "Tiền vệ sinh: " + moneyCleaning + " đồng / người.";
         } else {
             return "Mã phòng: " + idRoom + "\n" +
                     "Trạng thái: Còn trống" + "\n" +
@@ -115,8 +113,7 @@ public class Room {
                     "Tiền điện: " + moneyElectric + " đồng / 1 số" + "\n" +
                     "Tiền nước: " + moneyWater + " đồng / người" + "\n" +
                     "Tiền mạng: " + moneyInternet + " đồng / người" + "\n" +
-                    "Tiền vệ sinh: " + moneyCleaning + " đồng / người." + "\n" +
-                    "Tổng tiền trả cho 1 tháng: " + sumMoneyOneMonth;
+                    "Tiền vệ sinh: " + moneyCleaning + " đồng / người." + "\n";
         }
     }
 }
